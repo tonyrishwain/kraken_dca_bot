@@ -6,7 +6,7 @@ import datetime
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-import dotenv
+from dotenv import load_dotenv
 import os
 
 import krakenex
@@ -14,14 +14,17 @@ from pykrakenapi import KrakenAPI
 
 from config import MONTHLY_INVESTMENT_ALLOWANCE, CRYPTO_ALLOCATIONS
 
+# Load environment variables from .env file
+load_dotenv()
+
 # Kraken API credentials
-API_KEY = os.environ.get('API_KEY')
-API_SECRET = os.environ.get('API_SECRET')
+API_KEY = os.getenv('API_KEY')
+API_SECRET = os.getenv('API_SECRET')
 
 # Use Gmail account with Google app password
-EMAIL_RECIPIENT = os.environ.get('EMAIL_RECIPIENT')
-EMAIL_SENDER = os.environ.get('EMAIL_SENDER')
-EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_RECIPIENT = os.getenv('EMAIL_RECIPIENT')
+EMAIL_SENDER = os.getenv('EMAIL_SENDER')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 
 # Initialize Kraken API client
 kraken_api = krakenex.API(API_KEY, API_SECRET)
